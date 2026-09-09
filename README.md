@@ -10,7 +10,7 @@ Grammar ML is a complete, self-hosted English grammatical-error-correction (GEC)
 - Character offsets and individual edit suggestions generated from the model result
 - FastAPI endpoints for single and batch correction, health, readiness, and model metadata
 - Optional API-key protection, request-size limits, and extension-compatible CORS
-- Chrome/Edge/Brave Manifest V3 extension with popup, in-field action, `Alt+G`, context-menu correction, copy/apply, auto-check, and settings
+- Chrome/Edge/Brave Manifest V3 writing assistant with automatic checks, a suggestion counter, accept-one/accept-all actions, popup, context-menu correction, keyboard controls, and settings
 - A streaming fine-tuning pipeline configured for the 183,894,319-pair C4_200M GEC dataset
 - Docker, Docker Compose, Render blueprint, tests, and an extension packaging script
 
@@ -106,7 +106,16 @@ docker compose up --build
 3. Enable **Developer mode**.
 4. Choose **Load unpacked** and select the `extension` directory.
 5. Open the extension settings and test `https://grammar-ml-api.onrender.com` (already configured by default), or enter your own backend URL.
-6. Focus a text field and click the purple **G**, press `Alt+G`, or use the popup/context menu.
+6. Type in a text field. The purple **G** shows the number of model suggestions; click it to review and accept individual edits.
+
+Keyboard controls:
+
+- `Alt+G` checks the active field immediately.
+- `Alt+Enter` accepts all suggestions in the open card.
+- `Alt+Shift+A` accepts the latest correction, even when the card is closed.
+- `Esc` closes the suggestion card.
+
+This is a desktop Chromium browser extension. A system-wide Android or iPhone keyboard requires a separate native mobile keyboard application; browser extensions cannot replace the phone's keyboard.
 
 Package a store-ready ZIP:
 

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Grammar ML",
-  "version": "1.0.0",
-  "description": "Correct English grammar with your own transformer-powered API.",
+  "version": "1.1.0",
+  "description": "Get inline English writing suggestions from a transformer-powered API.",
   "action": {
     "default_title": "Grammar ML",
     "default_popup": "popup/popup.html"
@@ -33,6 +33,13 @@
         "mac": "Alt+G"
       },
       "description": "Correct the current field"
+    },
+    "apply-latest-correction": {
+      "suggested_key": {
+        "default": "Alt+Shift+A",
+        "mac": "Alt+Shift+A"
+      },
+      "description": "Accept the latest correction"
     }
   },
   "icons": {

@@ -8,6 +8,8 @@
 .grammar-ml-trigger {
   position: fixed !important;
   z-index: 2147483646 !important;
+  display: grid !important;
+  place-items: center !important;
   width: 28px !important;
   height: 28px !important;
   transform: translate(-100%, -100%) !important;
@@ -23,12 +25,36 @@
 }
 
 .grammar-ml-trigger:hover { background: #5e43ed !important; }
+.grammar-ml-trigger.is-loading .grammar-ml-trigger__logo { animation: grammar-ml-pulse 1s ease-in-out infinite !important; }
+.grammar-ml-trigger.has-error { background: #b42318 !important; }
+.grammar-ml-trigger__logo { display: block !important; }
+.grammar-ml-trigger__badge {
+  position: absolute !important;
+  top: -7px !important;
+  right: -7px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  padding: 0 4px !important;
+  border: 2px solid #fff !important;
+  border-radius: 999px !important;
+  background: #ef3e64 !important;
+  color: #fff !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  line-height: 14px !important;
+  text-align: center !important;
+}
+
+@keyframes grammar-ml-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .55; transform: scale(.82); }
+}
 
 .grammar-ml-card {
   position: fixed !important;
   z-index: 2147483647 !important;
-  width: min(360px, calc(100vw - 24px)) !important;
-  max-height: min(440px, calc(100vh - 24px)) !important;
+  width: min(380px, calc(100vw - 24px)) !important;
+  max-height: min(520px, calc(100vh - 24px)) !important;
   overflow: auto !important;
   padding: 14px !important;
   border: 1px solid #e5e1ff !important;
@@ -47,11 +73,29 @@
   margin-bottom: 10px !important;
 }
 
+.grammar-ml-card__header > div { display: flex !important; flex-direction: column !important; }
 .grammar-ml-card__header strong { color: #5637e8 !important; font-size: 15px !important; }
+.grammar-ml-card__header span { margin-top: 1px !important; color: #827a91 !important; font-size: 10px !important; }
 .grammar-ml-card__close { border: 0 !important; background: transparent !important; color: #777085 !important; font-size: 22px !important; cursor: pointer !important; }
-.grammar-ml-status, .grammar-ml-loading { margin: 0 0 9px !important; color: #686174 !important; }
+.grammar-ml-status, .grammar-ml-loading { display: flex !important; align-items: center !important; gap: 9px !important; margin: 0 0 10px !important; color: #686174 !important; }
+.grammar-ml-status > span { display: grid !important; flex: 0 0 26px !important; place-items: center !important; width: 26px !important; height: 26px !important; border-radius: 9px !important; background: #eeeaff !important; color: #5a3ee4 !important; font-size: 12px !important; font-weight: 800 !important; }
+.grammar-ml-status.is-clear > span { background: #e9f8ef !important; color: #18794e !important; }
+.grammar-ml-status p, .grammar-ml-loading p { margin: 0 !important; font-weight: 650 !important; }
+.grammar-ml-spinner { width: 18px !important; height: 18px !important; border: 2px solid #d8d0ff !important; border-top-color: #6747ef !important; border-radius: 50% !important; animation: grammar-ml-spin .8s linear infinite !important; }
+@keyframes grammar-ml-spin { to { transform: rotate(360deg); } }
 .grammar-ml-error { margin: 0 !important; color: #b42318 !important; }
-.grammar-ml-corrected { padding: 11px !important; border-radius: 10px !important; background: #f6f4ff !important; white-space: pre-wrap !important; overflow-wrap: anywhere !important; }
-.grammar-ml-actions { display: flex !important; gap: 8px !important; margin-top: 12px !important; }
-.grammar-ml-actions button { padding: 8px 11px !important; border: 1px solid #d9d4ef !important; border-radius: 9px !important; background: #fff !important; color: #29213f !important; cursor: pointer !important; }
+.grammar-ml-suggestions { display: grid !important; gap: 7px !important; }
+.grammar-ml-suggestion { display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 10px !important; padding: 9px 10px !important; border: 1px solid #e7e3f4 !important; border-radius: 10px !important; background: #fcfbff !important; }
+.grammar-ml-suggestion__change { display: flex !important; min-width: 0 !important; align-items: center !important; gap: 6px !important; overflow: hidden !important; }
+.grammar-ml-original, .grammar-ml-replacement { max-width: 120px !important; overflow: hidden !important; font-size: 12px !important; font-weight: 700 !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
+.grammar-ml-original { color: #b42318 !important; text-decoration: line-through !important; }
+.grammar-ml-replacement { color: #18794e !important; }
+.grammar-ml-arrow { color: #9a92a6 !important; }
+.grammar-ml-apply-one { flex: 0 0 auto !important; padding: 6px 9px !important; border: 1px solid #cfc5ff !important; border-radius: 8px !important; background: #f1edff !important; color: #5238d6 !important; font-size: 11px !important; font-weight: 750 !important; cursor: pointer !important; }
+.grammar-ml-preview { margin-top: 10px !important; padding: 8px 10px !important; border-radius: 9px !important; background: #f7f5ff !important; }
+.grammar-ml-preview summary { color: #635b70 !important; font-size: 11px !important; font-weight: 700 !important; cursor: pointer !important; }
+.grammar-ml-preview p { margin: 8px 0 0 !important; color: #312a3c !important; font-size: 12px !important; white-space: pre-wrap !important; overflow-wrap: anywhere !important; }
+.grammar-ml-actions { display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 8px !important; margin-top: 12px !important; }
+.grammar-ml-actions button { padding: 8px 12px !important; border: 1px solid #d9d4ef !important; border-radius: 9px !important; background: #fff !important; color: #29213f !important; cursor: pointer !important; }
+.grammar-ml-actions > span { color: #928a9e !important; font-size: 10px !important; }
 .grammar-ml-actions .grammar-ml-primary { border-color: #6848f1 !important; background: #6848f1 !important; color: #fff !important; }

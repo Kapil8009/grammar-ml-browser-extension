@@ -1,7 +1,7 @@
 const DEFAULTS = Object.freeze({
   apiUrl: "https://grammar-ml-api.onrender.com",
-  autoCheck: false,
-  debounceMs: 900,
+  autoCheck: true,
+  debounceMs: 1600,
 });
 
 chrome.runtime.onInstalled.addListener(async () => {
@@ -31,10 +31,19 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 });
 
 chrome.commands.onCommand.addListener(async (command) => {
-  if (command !== "correct-current-field") return;
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  if (tab?.id) {
-    await chrome.tabs.sendMessage(tab.id, { type: "GRAMMAR_ML_CORRECT_ACTIVE" });
+  if (!tab?.id) return;
+  const type =
+    command === "correct-current-field"
+      ? "GRAMMAR_ML_CORRECT_ACTIVE"
+      : command === "apply-latest-correction"
+        ? "GRAMMAR_ML_APPLY_LATEST"
+        : null;
+  if (!type) return;
+  try {
+    await chrome.tabs.sendMessage(tab.id, { type });
+  } catch {
+    // Restricted browser pages do not host the content script.
   }
 });
 

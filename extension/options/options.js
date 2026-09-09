@@ -1,7 +1,7 @@
 const DEFAULTS = {
   apiUrl: "https://grammar-ml-api.onrender.com",
-  autoCheck: false,
-  debounceMs: 900,
+  autoCheck: true,
+  debounceMs: 1600,
 };
 const form = document.querySelector("#settings-form");
 const apiUrl = document.querySelector("#api-url");
@@ -28,7 +28,7 @@ form.addEventListener("submit", async (event) => {
   await chrome.storage.sync.set({
     apiUrl: url,
     autoCheck: autoCheck.checked,
-    debounceMs: Math.min(5000, Math.max(300, Number(debounce.value) || 900)),
+    debounceMs: Math.min(5000, Math.max(600, Number(debounce.value) || 1600)),
   });
   await chrome.storage.local.set({ apiKey: apiKey.value.trim() });
   showStatus("Settings saved.");

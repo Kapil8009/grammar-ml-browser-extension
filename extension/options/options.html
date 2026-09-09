@@ -22,14 +22,23 @@
         <label for="api-key">API key <em>optional</em></label>
         <input id="api-key" type="password" autocomplete="off" placeholder="X-API-Key value">
 
-        <label class="toggle"><input id="auto-check" type="checkbox"><span>Automatically check after typing stops</span></label>
+        <label class="toggle"><input id="auto-check" type="checkbox"><span>Show writing suggestions automatically after typing stops</span></label>
 
         <label for="debounce">Typing delay (milliseconds)</label>
-        <input id="debounce" type="number" min="300" max="5000" step="100">
+        <input id="debounce" type="number" min="600" max="5000" step="100">
 
         <div class="actions"><button type="submit">Save settings</button><button type="button" id="test">Test connection</button></div>
         <p id="status" role="status" aria-live="polite"></p>
       </form>
+      <section>
+        <h2>Keyboard controls</h2>
+        <ul>
+          <li><kbd>Alt</kbd> + <kbd>G</kbd> — check the active field</li>
+          <li><kbd>Alt</kbd> + <kbd>Enter</kbd> — accept every visible suggestion</li>
+          <li><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> — accept the latest correction</li>
+          <li><kbd>Esc</kbd> — close the suggestion card</li>
+        </ul>
+      </section>
       <section><h2>Privacy</h2><p>Your text is sent only to the backend URL above. This extension contains no analytics or advertising code.</p></section>
     </main>
     <script src="options.js"></script>

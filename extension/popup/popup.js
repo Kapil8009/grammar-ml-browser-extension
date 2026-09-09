@@ -70,7 +70,7 @@ elements.settings.addEventListener("click", () => chrome.runtime.openOptionsPage
 
 function setBusy(busy) {
   elements.correct.disabled = busy;
-  elements.correct.textContent = busy ? "Correcting…" : "Correct text";
+  elements.correct.textContent = busy ? "Checking…" : "Check writing";
 }
 
 function setStatus(message, error = false) {
