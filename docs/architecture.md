@@ -48,6 +48,7 @@ Seq2seq models produce corrected text rather than a calibrated list of grammar e
 
 - Pin `GEC_MODEL_REVISION` to a reviewed commit instead of `main`.
 - Keep `trust_remote_code=False`; this project does not execute arbitrary Hub model code.
+- Keep `GEC_USE_SAFETENSORS=true` unless a trusted checkpoint only provides PyTorch weights; if disabled, pin the reviewed model revision.
 - Use HTTPS and a strong `GEC_API_KEY` outside local development.
 - Restrict CORS to the published extension origin where possible.
 - Run one model copy per process unless memory sizing explicitly allows more.

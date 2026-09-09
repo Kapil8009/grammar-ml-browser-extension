@@ -55,7 +55,7 @@ class HuggingFaceSeq2SeqModel:
                 self.name,
                 revision=self.settings.model_revision,
                 trust_remote_code=False,
-                use_safetensors=True,
+                use_safetensors=self.settings.use_safetensors,
             )
             model.to(device)
             model.eval()
@@ -75,13 +75,17 @@ class HuggingFaceSeq2SeqModel:
             truncation=True,
             max_length=self.settings.max_input_tokens,
         ).to(self._device)
+        generation_options = {
+            "max_new_tokens": self.settings.max_new_tokens,
+            "num_beams": self.settings.num_beams,
+            "no_repeat_ngram_size": 3,
+        }
+        if self.settings.num_beams > 1:
+            generation_options["early_stopping"] = True
         with self._torch.inference_mode():
             generated = self._model.generate(
                 **encoded,
-                max_new_tokens=self.settings.max_new_tokens,
-                num_beams=self.settings.num_beams,
-                early_stopping=True,
-                no_repeat_ngram_size=3,
+                **generation_options,
             )
         outputs = self._tokenizer.batch_decode(generated, skip_special_tokens=True)
         return [output.strip() for output in outputs]

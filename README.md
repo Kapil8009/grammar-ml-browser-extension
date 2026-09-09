@@ -52,6 +52,8 @@ See [the detailed architecture](docs/architecture.md) for component boundaries a
 
 The default `jbochi/coedit-small` checkpoint is a 77M-parameter FLAN-T5 derivative. It keeps local CPU deployment practical. Set `GEC_MODEL_NAME=grammarly/coedit-large` and the instruction prefix below for the official 770M-parameter CoEdIT checkpoint when quality matters more than memory and latency.
 
+The free-hosting profile in `render.yaml` uses the smaller MIT-licensed [`visheratin/t5-efficient-tiny-grammar-correction`](https://huggingface.co/visheratin/t5-efficient-tiny-grammar-correction) checkpoint. Its model card says it was fine-tuned on a subset of C4_200M with additional synthetic typos. Local smoke tests peaked at roughly 455 MiB, compared with roughly 599 MiB for CoEdIT-Small, so this is the practical choice for a 512 MiB free service. Switch the environment variables back to CoEdIT-Small on a larger instance for stronger corrections.
+
 CoEdIT is an instruction-tuned text-editing model based on FLAN-T5. The official large checkpoint documents English GEC usage and 770M parameters. Its license is CC BY-NC 4.0, so review the license before commercial use.
 
 The training default is [`martinsr/c4_200m`](https://huggingface.co/datasets/martinsr/c4_200m), a streaming-compatible Parquet conversion of Google's C4_200M synthetic GEC data with 183,894,319 erroneous/correct sentence pairs. For higher final quality, continue fine-tuning on human learner corpora such as W&I+LOCNESS, FCE, Lang-8, NUCLE, and JFLEG, subject to each corpus's license. Synthetic data gives scale; human annotations better represent real errors.
@@ -116,13 +118,13 @@ The result is written to `outputs/grammar-ml-extension.zip`. Publishing in the C
 
 ## Deploy the backend
 
-The included `render.yaml` can create a Docker web service on Render. Use a paid instance with enough memory for the selected model; free/small instances may run out of memory or be too slow. After deployment:
+The included `render.yaml` creates a free Docker web service on Render with the compact C4_200M-trained checkpoint. Free services can sleep and the first correction after a cold start can be slow. After deployment:
 
 1. Copy the HTTPS service URL into the extension options.
-2. Copy the generated `GEC_API_KEY` value into the extension options.
+2. For a private deployment, set `GEC_API_KEY` in Render and copy the same value into the extension options.
 3. Restrict `GEC_ALLOWED_ORIGINS` if your extension has a stable published extension ID.
 
-Any Docker provider with persistent model cache and at least 2 GB RAM for the small checkpoint can host the API. The official CoEdIT-Large checkpoint generally needs substantially more memory; benchmark the exact runtime and quantization before sizing production infrastructure.
+Use at least 2 GB RAM for the default CoEdIT-Small checkpoint in production. The official CoEdIT-Large checkpoint generally needs substantially more memory; benchmark the exact runtime and quantization before sizing production infrastructure.
 
 ## Fine-tune a model
 
@@ -171,6 +173,7 @@ More guidance is in [docs/training.md](docs/training.md).
 | `GEC_MODEL_NAME` | `jbochi/coedit-small` | Hugging Face model ID or local checkpoint |
 | `GEC_MODEL_PREFIX` | `Fix the grammar: ` | Instruction prepended to every segment |
 | `GEC_MODEL_REVISION` | `main` | Hub revision; pin a commit in production |
+| `GEC_USE_SAFETENSORS` | `true` | Require safetensors weights; disable only for a reviewed, pinned model |
 | `GEC_DEVICE` | `auto` | `auto`, `cpu`, `cuda`, or another PyTorch device |
 | `GEC_MAX_INPUT_TOKENS` | `384` | Tokenizer truncation limit per segment |
 | `GEC_MAX_NEW_TOKENS` | `256` | Generation output limit |

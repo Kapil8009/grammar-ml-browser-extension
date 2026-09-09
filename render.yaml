@@ -2,16 +2,24 @@ services:
   - type: web
     name: grammar-ml-api
     runtime: docker
-    plan: starter
+    plan: free
     healthCheckPath: /health
     envVars:
       - key: GEC_MODEL_NAME
-        value: jbochi/coedit-small
+        value: visheratin/t5-efficient-tiny-grammar-correction
       - key: GEC_MODEL_PREFIX
-        value: "Fix the grammar: "
+        value: ""
+      - key: GEC_MODEL_REVISION
+        value: a98f126664317cf2e68d33234c7072fdd6b289f3
+      - key: GEC_USE_SAFETENSORS
+        value: "false"
+      - key: GEC_MAX_INPUT_TOKENS
+        value: "256"
+      - key: GEC_MAX_NEW_TOKENS
+        value: "128"
+      - key: GEC_NUM_BEAMS
+        value: "1"
       - key: GEC_PRELOAD_MODEL
         value: "true"
       - key: GEC_ALLOWED_ORIGINS
         value: "*"
-      - key: GEC_API_KEY
-        generateValue: true

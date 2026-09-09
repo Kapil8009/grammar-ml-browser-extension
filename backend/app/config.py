@@ -17,6 +17,7 @@ class Settings:
     model_name: str = "jbochi/coedit-small"
     model_prefix: str = "Fix the grammar: "
     model_revision: str = "main"
+    use_safetensors: bool = True
     device: str = "auto"
     max_input_tokens: int = 384
     max_new_tokens: int = 256
@@ -40,6 +41,9 @@ class Settings:
             model_name=os.getenv("GEC_MODEL_NAME", defaults.model_name),
             model_prefix=os.getenv("GEC_MODEL_PREFIX", defaults.model_prefix),
             model_revision=os.getenv("GEC_MODEL_REVISION", defaults.model_revision),
+            use_safetensors=_as_bool(
+                os.getenv("GEC_USE_SAFETENSORS"), defaults.use_safetensors
+            ),
             device=os.getenv("GEC_DEVICE", defaults.device),
             max_input_tokens=int(os.getenv("GEC_MAX_INPUT_TOKENS", defaults.max_input_tokens)),
             max_new_tokens=int(os.getenv("GEC_MAX_NEW_TOKENS", defaults.max_new_tokens)),
