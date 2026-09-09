@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grammar ML settings</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main>
+      <header><span>G</span><div><h1>Grammar ML settings</h1><p>Connect the extension to your correction API.</p></div></header>
+      <form id="settings-form">
+        <label for="api-url">Backend URL</label>
+        <input id="api-url" type="url" required placeholder="http://localhost:8000">
+        <small>Use HTTPS when the backend is deployed.</small>
+
+        <label for="api-key">API key <em>optional</em></label>
+        <input id="api-key" type="password" autocomplete="off" placeholder="X-API-Key value">
+
+        <label class="toggle"><input id="auto-check" type="checkbox"><span>Automatically check after typing stops</span></label>
+
+        <label for="debounce">Typing delay (milliseconds)</label>
+        <input id="debounce" type="number" min="300" max="5000" step="100">
+
+        <div class="actions"><button type="submit">Save settings</button><button type="button" id="test">Test connection</button></div>
+        <p id="status" role="status" aria-live="polite"></p>
+      </form>
+      <section><h2>Privacy</h2><p>Your text is sent only to the backend URL above. This extension contains no analytics or advertising code.</p></section>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

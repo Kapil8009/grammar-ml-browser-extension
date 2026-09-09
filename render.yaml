@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: grammar-ml-api
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: GEC_MODEL_NAME
+        value: jbochi/coedit-small
+      - key: GEC_MODEL_PREFIX
+        value: "Fix the grammar: "
+      - key: GEC_PRELOAD_MODEL
+        value: "true"
+      - key: GEC_ALLOWED_ORIGINS
+        value: "*"
+      - key: GEC_API_KEY
+        generateValue: true

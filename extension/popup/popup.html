@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grammar ML</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <header>
+      <span class="logo">G</span>
+      <div>
+        <h1>Grammar ML</h1>
+        <p>Transformer-powered correction</p>
+      </div>
+      <button id="settings" class="icon-button" title="Settings" aria-label="Open settings">⚙</button>
+    </header>
+    <main>
+      <label for="text">Text to check</label>
+      <textarea id="text" rows="7" placeholder="Type or focus a field on this page…"></textarea>
+      <div id="status" role="status" aria-live="polite"></div>
+      <div class="actions">
+        <button id="correct" class="primary">Correct text</button>
+        <button id="apply" hidden>Apply to page</button>
+        <button id="copy" hidden>Copy</button>
+      </div>
+      <section id="result" hidden>
+        <div class="result-heading">
+          <strong>Correction</strong>
+          <span id="edit-count"></span>
+        </div>
+        <p id="corrected"></p>
+      </section>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

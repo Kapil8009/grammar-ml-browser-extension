@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      GEC_MODEL_NAME: ${GEC_MODEL_NAME:-jbochi/coedit-small}
+      HF_HOME: /models/huggingface
+    volumes:
+      - hf-cache:/models/huggingface
+    restart: unless-stopped
+
+volumes:
+  hf-cache:

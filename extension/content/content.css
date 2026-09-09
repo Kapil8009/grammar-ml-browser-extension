@@ -1,0 +1,57 @@
+.grammar-ml-trigger,
+.grammar-ml-card,
+.grammar-ml-card * {
+  box-sizing: border-box !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+.grammar-ml-trigger {
+  position: fixed !important;
+  z-index: 2147483646 !important;
+  width: 28px !important;
+  height: 28px !important;
+  transform: translate(-100%, -100%) !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+  background: #7357ff !important;
+  color: #fff !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  line-height: 28px !important;
+  box-shadow: 0 5px 18px rgba(46, 36, 96, 0.3) !important;
+  cursor: pointer !important;
+}
+
+.grammar-ml-trigger:hover { background: #5e43ed !important; }
+
+.grammar-ml-card {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  width: min(360px, calc(100vw - 24px)) !important;
+  max-height: min(440px, calc(100vh - 24px)) !important;
+  overflow: auto !important;
+  padding: 14px !important;
+  border: 1px solid #e5e1ff !important;
+  border-radius: 15px !important;
+  background: #fff !important;
+  color: #1b1730 !important;
+  box-shadow: 0 18px 50px rgba(34, 27, 65, 0.22) !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+}
+
+.grammar-ml-card__header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 10px !important;
+}
+
+.grammar-ml-card__header strong { color: #5637e8 !important; font-size: 15px !important; }
+.grammar-ml-card__close { border: 0 !important; background: transparent !important; color: #777085 !important; font-size: 22px !important; cursor: pointer !important; }
+.grammar-ml-status, .grammar-ml-loading { margin: 0 0 9px !important; color: #686174 !important; }
+.grammar-ml-error { margin: 0 !important; color: #b42318 !important; }
+.grammar-ml-corrected { padding: 11px !important; border-radius: 10px !important; background: #f6f4ff !important; white-space: pre-wrap !important; overflow-wrap: anywhere !important; }
+.grammar-ml-actions { display: flex !important; gap: 8px !important; margin-top: 12px !important; }
+.grammar-ml-actions button { padding: 8px 11px !important; border: 1px solid #d9d4ef !important; border-radius: 9px !important; background: #fff !important; color: #29213f !important; cursor: pointer !important; }
+.grammar-ml-actions .grammar-ml-primary { border-color: #6848f1 !important; background: #6848f1 !important; color: #fff !important; }

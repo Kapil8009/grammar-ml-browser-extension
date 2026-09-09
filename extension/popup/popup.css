@@ -1,0 +1,22 @@
+:root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+body { width: 390px; margin: 0; background: #fbfaff; color: #1c1730; }
+header { display: flex; align-items: center; gap: 11px; padding: 16px 17px; border-bottom: 1px solid #ece8ff; background: #fff; }
+.logo { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(145deg, #8064ff, #4d2dde); color: white; font-size: 21px; font-weight: 850; box-shadow: 0 8px 20px rgba(86, 55, 232, .25); }
+h1 { margin: 0; font-size: 16px; }
+header p { margin: 2px 0 0; color: #756d83; font-size: 11px; }
+.icon-button { margin-left: auto; border: 0; background: transparent; color: #746c82; font-size: 18px; cursor: pointer; }
+main { padding: 15px 17px 18px; }
+label { display: block; margin-bottom: 7px; color: #4f485c; font-size: 12px; font-weight: 700; }
+textarea { width: 100%; resize: vertical; min-height: 122px; padding: 11px; border: 1px solid #d9d3ee; border-radius: 11px; outline: 0; background: #fff; color: #211a35; font: inherit; font-size: 13px; line-height: 1.45; }
+textarea:focus { border-color: #7357ff; box-shadow: 0 0 0 3px rgba(115, 87, 255, .12); }
+#status { min-height: 20px; padding-top: 6px; color: #786f84; font-size: 11px; }
+#status.error { color: #b42318; }
+.actions { display: flex; gap: 8px; }
+button { padding: 9px 12px; border: 1px solid #d7d1e8; border-radius: 9px; background: #fff; color: #332b44; font-weight: 700; cursor: pointer; }
+button.primary { flex: 1; border-color: #6747ef; background: #6747ef; color: #fff; }
+button:disabled { opacity: .55; cursor: wait; }
+#result { margin-top: 13px; padding: 11px; border: 1px solid #e3def7; border-radius: 11px; background: #fff; }
+.result-heading { display: flex; justify-content: space-between; color: #4e3bb2; font-size: 12px; }
+#edit-count { color: #81798e; font-weight: 500; }
+#corrected { max-height: 132px; overflow: auto; margin: 8px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; line-height: 1.5; }
