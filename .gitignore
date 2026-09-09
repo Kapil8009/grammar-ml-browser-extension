@@ -10,7 +10,7 @@ venv/
 work/
 .env
 .DS_Store
-models/
+/models/
 checkpoints/
 wandb/
 extension/dist/
