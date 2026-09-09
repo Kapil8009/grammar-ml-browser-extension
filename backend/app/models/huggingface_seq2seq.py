@@ -6,7 +6,6 @@ from typing import Any
 
 from backend.app.config import Settings
 
-
 logger = logging.getLogger(__name__)
 
 

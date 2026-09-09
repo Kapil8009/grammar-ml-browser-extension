@@ -198,6 +198,10 @@ pytest
 
 The unit and API tests use a fake `CorrectionModel`, so CI does not download a multi-hundred-megabyte checkpoint. A real-model smoke test is intentionally opt-in.
 
+A ready-to-use GitHub Actions definition is provided at
+[`docs/github-actions-ci.yml`](docs/github-actions-ci.yml). Copy it to
+`.github/workflows/ci.yml` if your GitHub token includes the `workflow` scope.
+
 ## Privacy and limitations
 
 Text is transmitted to the backend selected in the extension settings. The extension has no analytics. API keys are kept in local extension storage rather than browser-synced storage. See [PRIVACY.md](PRIVACY.md).
