@@ -1,5 +1,5 @@
 const DEFAULTS = Object.freeze({
-  apiUrl: "http://localhost:8000",
+  apiUrl: "https://grammar-ml-api.onrender.com",
   autoCheck: false,
   debounceMs: 900,
 });
@@ -48,7 +48,8 @@ async function correctText(text) {
   const headers = { "Content-Type": "application/json" };
   if (apiKey) headers["X-API-Key"] = apiKey;
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 60000);
+  // Render Free can need 50+ seconds to wake before it starts model inference.
+  const timeout = setTimeout(() => controller.abort(), 180000);
   try {
     const response = await fetch(`${base}/v1/correct`, {
       method: "POST",

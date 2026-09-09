@@ -1,4 +1,8 @@
-const DEFAULTS = { apiUrl: "http://localhost:8000", autoCheck: false, debounceMs: 900 };
+const DEFAULTS = {
+  apiUrl: "https://grammar-ml-api.onrender.com",
+  autoCheck: false,
+  debounceMs: 900,
+};
 const form = document.querySelector("#settings-form");
 const apiUrl = document.querySelector("#api-url");
 const apiKey = document.querySelector("#api-key");

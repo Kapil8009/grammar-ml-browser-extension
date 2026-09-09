@@ -101,11 +101,11 @@ docker compose up --build
 
 ## Install the extension
 
-1. Start the backend.
+1. Use the included hosted backend, or start your own backend for private/local use.
 2. Open `chrome://extensions` in Chrome, `edge://extensions` in Edge, or the equivalent page in Brave.
 3. Enable **Developer mode**.
 4. Choose **Load unpacked** and select the `extension` directory.
-5. Open the extension settings and test `http://localhost:8000`.
+5. Open the extension settings and test `https://grammar-ml-api.onrender.com` (already configured by default), or enter your own backend URL.
 6. Focus a text field and click the purple **G**, press `Alt+G`, or use the popup/context menu.
 
 Package a store-ready ZIP:
@@ -119,6 +119,8 @@ The result is written to `outputs/grammar-ml-extension.zip`. Publishing in the C
 ## Deploy the backend
 
 The included `render.yaml` creates a free Docker web service on Render with the compact C4_200M-trained checkpoint. Free services can sleep and the first correction after a cold start can be slow. After deployment:
+
+Public demo endpoint: [`https://grammar-ml-api.onrender.com`](https://grammar-ml-api.onrender.com). It has no uptime guarantee and should not be used for sensitive text; self-host for private or production workloads.
 
 1. Copy the HTTPS service URL into the extension options.
 2. For a private deployment, set `GEC_API_KEY` in Render and copy the same value into the extension options.
